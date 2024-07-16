@@ -1,6 +1,3 @@
-Sure, here's the C++ code without comments:
-
-```cpp
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -26,4 +23,3 @@ int main() {
     
     return 0;
 }
-```
