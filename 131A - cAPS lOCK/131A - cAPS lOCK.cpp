@@ -1,25 +1,22 @@
 #include <iostream>
 #include <cctype>
 #include <string>
-#include <algorithm> 
+#include <algorithm>
 
 int main() {
     std::string word;
     std::cin >> word;
     
-    bool allUpper = true;
-    bool firstUpper = isupper(word[0]);
+    bool allUpper = std::all_of(word.begin(), word.end(), [](unsigned char ch){ return std::isupper(ch); });
+    bool firstUpperRestLower = std::isupper(word[0]) && std::all_of(word.begin() + 1, word.end(), [](unsigned char ch){ return std::isupper(ch); });
     
-    for (char ch : word) {
-        if (!isupper(ch)) {
-            allUpper = false;
-            break;
-        }
-    }
-    
-    if (allUpper || (firstUpper && std::all_of(word.begin() + 1, word.end(), ::isupper))) {
+    if (allUpper || firstUpperRestLower) {
         for (char &ch : word) {
-            ch = isupper(static_cast<unsigned char>(ch)) ? tolower(static_cast<unsigned char>(ch)) : toupper(static_cast<unsigned char>(ch));
+            if (std::isupper(static_cast<unsigned char>(ch))) {
+                ch = std::tolower(static_cast<unsigned char>(ch));
+            } else {
+                ch = std::toupper(static_cast<unsigned char>(ch));
+            }
         }
     }
     
