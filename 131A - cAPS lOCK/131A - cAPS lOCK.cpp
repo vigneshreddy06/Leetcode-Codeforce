@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cctype>
-#include <cstring>
+#include <string>
+#include <algorithm> 
 
 int main() {
     std::string word;
@@ -18,7 +19,7 @@ int main() {
     
     if (allUpper || (firstUpper && std::all_of(word.begin() + 1, word.end(), ::isupper))) {
         for (char &ch : word) {
-            ch = isupper(ch) ? tolower(ch) : toupper(ch);
+            ch = isupper(static_cast<unsigned char>(ch)) ? tolower(static_cast<unsigned char>(ch)) : toupper(static_cast<unsigned char>(ch));
         }
     }
     
