@@ -19,4 +19,4 @@ class Solution:
                 
                 dist = max(dist, x*x + y*y)
                 
-        return dist
+        return dist 
