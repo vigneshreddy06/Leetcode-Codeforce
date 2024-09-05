@@ -1,3 +1,14 @@
 class Solution:
-    def missingRolls(self, a: List[int], q: int, n: int) -> List[int]:
-        return next((w for w in combinations_with_replacement(range(1,7),n) if sum(w)==p),[p:=q*(n+len(a))-sum(a)]*0)
+    def missingRolls(self, rolls: List[int], mean: int, n: int) -> List[int]:
+        Total_sum = (len(rolls) + n)*mean - sum(rolls)
+        if Total_sum < n or Total_sum > 6*n:
+            return []
+        ans = [1]*n
+        remain_sum = Total_sum - n
+        i = 0
+        while(remain_sum > 0):
+            increment = min(remain_sum, 5)
+            ans[i] += increment
+            remain_sum -= increment
+            i += 1
+        return ans       
